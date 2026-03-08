@@ -1,241 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blueleaf Digital | Shreeja Hebbar</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BlueLeaf Digitals | Elegant Wedding Invitations</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --teal:#007872;
+  --teal-light:#00b8ad;
+  --sage:#8eb5b0;
+  --cream:#fdf9e3;
+  --gold:#c9a84c;
+  --gold-light:#e8c97a;
+  --dark:#050e12;
+  --dark2:#0a1a20;
+  --dark3:#0f2530;
+  --glass:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--dark);
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
+}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+/* CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--teal-light);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:transform .15s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(0,184,173,0.4);border-radius:50%;pointer-events:none;z-index:9998;transition:all .35s cubic-bezier(.25,.46,.45,.94);}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+/* ORBS */
+.orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:orbFloat linear infinite;}
+.orb1{width:500px;height:500px;background:rgba(0,120,114,0.18);top:-100px;left:-100px;animation-duration:20s;}
+.orb2{width:400px;height:400px;background:rgba(142,181,176,0.12);bottom:-80px;right:-80px;animation-duration:25s;animation-direction:reverse;}
+.orb3{width:300px;height:300px;background:rgba(201,168,76,0.08);top:40%;left:40%;animation-duration:18s;}
+@keyframes orbFloat{0%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-20px,40px) scale(0.95)}100%{transform:translate(0,0) scale(1)}}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,14,18,0.6);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);transition:all .4s;}
+header.scrolled{background:rgba(5,14,18,0.88);}
+.logo-wrap{display:flex;align-items:center;gap:14px;}
+.logo-wrap img{height:40px;border-radius:8px;}
+.logo-text strong{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--teal-light);letter-spacing:.5px;}
+.logo-text span{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+nav{display:flex;gap:32px;align-items:center;}
+nav a{font-size:13px;font-weight:500;letter-spacing:.5px;text-decoration:none;color:rgba(255,255,255,0.6);transition:color .25s;position:relative;}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--teal-light);transform:scaleX(0);transition:transform .3s;}
+nav a:hover{color:#fff;}
+nav a:hover::after{transform:scaleX(1);}
+.nav-cta{background:linear-gradient(135deg,var(--teal),var(--teal-light)) !important;color:#fff !important;padding:9px 22px;border-radius:40px;font-weight:600;font-size:13px;box-shadow:0 0 24px rgba(0,184,173,0.3);transition:box-shadow .3s,transform .3s !important;}
+.nav-cta:hover{box-shadow:0 0 40px rgba(0,184,173,0.5) !important;transform:translateY(-2px) !important;}
+.nav-cta::after{display:none !important;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 80px 60px;position:relative;z-index:1;gap:40px;}
+.hero-left{position:relative;z-index:2;}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);border-radius:40px;padding:8px 20px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--teal-light);font-weight:500;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards;}
+.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--teal-light);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,184,173,.6)}50%{box-shadow:0 0 0 6px rgba(0,184,173,0)}}
+
+.hero-script{font-family:'Great Vibes',cursive;font-size:32px;color:var(--gold-light);margin-bottom:10px;opacity:0;animation:fadeUp .8s .35s forwards;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5.5vw,80px);font-weight:300;line-height:1.05;margin-bottom:22px;opacity:0;animation:fadeUp .8s .5s forwards;}
+.hero-h1 em{font-style:italic;background:linear-gradient(90deg,var(--teal-light),var(--sage));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-desc{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:440px;margin-bottom:36px;opacity:0;animation:fadeUp .8s .65s forwards;}
+
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;opacity:0;animation:fadeUp .8s .75s forwards;}
+.chip-glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);border-radius:40px;padding:8px 18px;font-size:13px;color:rgba(255,255,255,0.75);transition:all .3s;}
+.chip-glass:hover{background:rgba(0,184,173,0.15);border-color:rgba(0,184,173,0.4);color:#fff;transform:translateY(-2px);}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards;}
+.btn-glow{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;padding:14px 36px;border-radius:40px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:.5px;box-shadow:0 0 30px rgba(0,184,173,0.35),0 8px 24px rgba(0,0,0,0.3);transition:all .3s;position:relative;overflow:hidden;}
+.btn-glow::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);opacity:0;transition:opacity .3s;}
+.btn-glow:hover{box-shadow:0 0 50px rgba(0,184,173,0.5),0 12px 32px rgba(0,0,0,0.4);transform:translateY(-3px);}
+.btn-glow:hover::after{opacity:1;}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:14px 36px;border-radius:40px;font-size:14px;font-weight:500;text-decoration:none;backdrop-filter:blur(10px);transition:all .3s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff;background:rgba(255,255,255,0.07);transform:translateY(-3px);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO CARD */
+.hero-right{display:flex;align-items:center;justify-content:center;position:relative;height:520px;opacity:0;animation:fadeUp .8s 1s forwards;}
+.card-scene{position:relative;width:320px;height:460px;}
+
+.glass-card{position:absolute;border-radius:24px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);box-shadow:0 30px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.1);overflow:hidden;}
+.glass-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%);pointer-events:none;}
+
+.card-main-invite{width:280px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;background:linear-gradient(160deg,rgba(0,120,114,0.4),rgba(0,50,48,0.6));border-color:rgba(0,184,173,0.2);animation:floatMain 7s ease-in-out infinite;}
+@keyframes floatMain{0%,100%{transform:translate(-50%,-50%) translateY(0) rotate(-1deg)}50%{transform:translate(-50%,-50%) translateY(-14px) rotate(1deg)}}
+
+.inv-script-big{font-family:'Great Vibes',cursive;font-size:38px;color:rgba(255,255,255,0.9);margin-bottom:6px;}
+.inv-couple{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,0.85);margin-bottom:18px;}
+.inv-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);margin:0 auto 18px;}
+.inv-date{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:10px;}
+.inv-venue{font-size:13px;color:rgba(255,255,255,0.5);}
+.inv-top-ornament{font-size:24px;margin-bottom:14px;opacity:0.6;}
+
+.mini-glass{position:absolute;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(14px);border-radius:16px;padding:12px 16px;box-shadow:0 12px 30px rgba(0,0,0,0.3);}
+.mg1{top:20px;right:-40px;animation:floatA 5s ease-in-out infinite;}
+.mg2{bottom:40px;left:-50px;animation:floatB 6s ease-in-out infinite;}
+.mg3{top:50%;right:-60px;animation:floatC 8s ease-in-out infinite;}
+@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes floatC{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
+.mg-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px;}
+.mg-val{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--teal-light);}
+
+.sparkle{position:absolute;border-radius:50%;background:var(--gold-light);animation:sparkleAnim linear infinite;}
+@keyframes sparkleAnim{0%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0)}}
+
+/* SECTIONS */
+.section{padding:100px 0;position:relative;z-index:1;}
+.container{max-width:1160px;margin:auto;padding:0 48px;}
+.s-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);font-weight:500;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.s-label::before{content:'';width:30px;height:1px;background:var(--teal-light);}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;}
+.s-title em{font-style:italic;background:linear-gradient(90deg,var(--teal-light),var(--sage));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ABOUT */
+#about{background:var(--dark2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:54px;}
+.about-text p{font-size:16px;line-height:1.9;color:rgba(255,255,255,0.55);margin-bottom:20px;}
+.glass-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+.glass-list li{display:flex;align-items:center;gap:14px;padding:14px 20px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);border-radius:12px;font-size:14px;color:rgba(255,255,255,0.75);transition:all .3s;}
+.glass-list li:hover{background:rgba(0,184,173,0.1);border-color:rgba(0,184,173,0.25);transform:translateX(6px);}
+.glass-list li::before{content:"✦";color:var(--teal-light);font-size:10px;flex-shrink:0;}
+.about-right{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat-glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);border-radius:20px;padding:30px 24px;position:relative;overflow:hidden;transition:all .35s;}
+.stat-glass::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,173,0.06),transparent);opacity:0;transition:opacity .3s;}
+.stat-glass:hover{transform:translateY(-5px);border-color:rgba(0,184,173,0.25);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+.stat-glass:hover::before{opacity:1;}
+.stat-icon{font-size:28px;margin-bottom:12px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;color:var(--teal-light);line-height:1;margin-bottom:6px;}
+.stat-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;}
+
+/* INVITATIONS */
+#invitations{background:var(--dark);}
+.invite-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px;}
+.inv-card{border-radius:22px;overflow:hidden;cursor:pointer;position:relative;transition:transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s;}
+.inv-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 40px rgba(0,184,173,0.15);}
+.inv-card-inner{aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 24px;text-align:center;position:relative;overflow:hidden;}
+.inv-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s ease;z-index:2;}
+.inv-card:hover::after{transform:translateX(100%);}
+.th-royal{background:linear-gradient(160deg,#0a2a28,#003d38,#005a55);}
+.th-pastel{background:linear-gradient(160deg,#2a1f14,#3d2d1a,#2a1f14);}
+.th-floral{background:linear-gradient(160deg,#0d1f10,#1a3320,#0d1f10);}
+.th-gold{background:linear-gradient(160deg,#1a1005,#2d1f08,#1a1005);}
+.th-modern{background:linear-gradient(160deg,#0d0d2e,#1a1a5e,#0d0d2e);}
+.th-sage{background:linear-gradient(160deg,#0a1e1c,#154340,#0a1e1c);}
+.inv-glass-overlay{position:absolute;inset:0;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);}
+.inv-tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 12px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);z-index:3;}
+.i-script{font-family:'Great Vibes',cursive;font-size:34px;margin-bottom:8px;}
+.i-names{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin-bottom:16px;}
+.i-line{width:50px;height:1px;margin:0 auto 16px;background:rgba(255,255,255,0.25);}
+.i-date{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.65;}
+.i-venue{font-size:12px;margin-top:8px;opacity:.45;}
+.corner-dec{position:absolute;font-size:36px;opacity:0.07;pointer-events:none;}
+.cd-tl{top:10px;left:10px;}.cd-br{bottom:10px;right:10px;}
+
+/* WHATSAPP */
+#whatsapp{background:var(--dark2);}
+.wa-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:52px;}
+.wa-feats{display:flex;flex-direction:column;gap:18px;}
+.wa-feat{display:flex;gap:18px;align-items:flex-start;padding:22px;border-radius:18px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(14px);transition:all .35s;}
+.wa-feat:hover{background:rgba(0,184,173,0.08);border-color:rgba(0,184,173,0.25);transform:translateX(6px);box-shadow:0 12px 36px rgba(0,0,0,0.25);}
+.wa-icon{width:48px;height:48px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--teal),var(--teal-light));display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(0,184,173,0.3);}
+.wa-feat-body h4{font-size:15px;font-weight:600;margin-bottom:5px;color:#fff;}
+.wa-feat-body p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.phone-wrap{width:240px;margin:0 auto;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);border-radius:36px;padding:10px;box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.05);}
+.phone-screen{background:#111b21;border-radius:28px;overflow:hidden;min-height:420px;}
+.phone-bar{background:#1f2c34;padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.phone-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--teal));flex-shrink:0;}
+.phone-info strong{font-size:13px;color:#e9edef;}
+.phone-info small{display:block;font-size:10px;color:#8696a0;}
+.phone-body{padding:12px 10px;display:flex;flex-direction:column;gap:8px;}
+.bubble-recv{background:#202c33;border-radius:10px 10px 10px 0;padding:9px 12px;max-width:85%;font-size:12px;color:#e9edef;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+.bubble-invite-glass{border-radius:14px;padding:18px 14px;max-width:90%;text-align:center;background:linear-gradient(135deg,rgba(0,120,114,0.6),rgba(0,50,48,0.8));border:1px solid rgba(0,184,173,0.25);backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.biscript{font-family:'Great Vibes',cursive;font-size:22px;color:#fff;}
+.binames{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;color:rgba(255,255,255,0.85);margin:6px 0;}
+.bidate{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.bubble-sent{background:#005c4b;border-radius:10px 10px 0 10px;padding:9px 12px;max-width:80%;font-size:12px;color:#e9edef;align-self:flex-end;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+.btime{font-size:9px;color:#8696a0;text-align:right;margin-top:4px;}
+
+/* POSTERS */
+#posters{background:var(--dark);}
+.poster-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
+.poster-card{border-radius:18px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:1;transition:transform .4s,box-shadow .4s;}
+.poster-card:hover{transform:scale(1.05) translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,0.5),0 0 30px rgba(0,184,173,0.1);}
+.poster-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative;}
+.poster-inner::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.06),transparent);pointer-events:none;}
+.p-std{background:linear-gradient(160deg,#003830,#005a50);}
+.p-eng{background:linear-gradient(160deg,#1a1505,#2a2008);}
+.p-ann{background:linear-gradient(160deg,#0d0820,#1a1240);}
+.p-cpl{background:linear-gradient(160deg,#100520,#1e0a40);}
+.poster-emoji{font-size:38px;margin-bottom:10px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));}
+.poster-label{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:4px;}
+.poster-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;}
+
+/* PACKAGES */
+#packages{background:var(--dark2);}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px;align-items:start;}
+.pkg-glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:28px;padding:38px 30px;position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s,border-color .3s;}
+.pkg-glass::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent 60%);pointer-events:none;}
+.pkg-glass:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(0,0,0,0.4);}
+.pkg-glass.featured{background:linear-gradient(160deg,rgba(0,120,114,0.25),rgba(0,80,75,0.3));border-color:rgba(0,184,173,0.35);box-shadow:0 0 60px rgba(0,184,173,0.15),0 30px 60px rgba(0,0,0,0.4);}
+.pkg-glass.featured:hover{box-shadow:0 0 80px rgba(0,184,173,0.25),0 40px 80px rgba(0,0,0,0.5);}
+.pkg-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--gold),var(--gold-light));color:var(--dark);font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 18px;border-radius:20px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 16px rgba(201,168,76,0.4);}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:8px;}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;background:linear-gradient(90deg,var(--teal-light),var(--sage));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:6px;}
+.pkg-sub{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:26px;}
+.pkg-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.pkg-feats li{font-size:14px;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.pkg-feats li:last-child{border-bottom:none;}
+.pkg-feats li::before{content:"✦";color:var(--teal-light);font-size:9px;}
+.pkg-btn{display:block;text-align:center;padding:13px;border-radius:40px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(0,184,173,0.35);color:var(--teal-light);background:rgba(0,184,173,0.05);backdrop-filter:blur(10px);transition:all .3s;}
+.pkg-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 0 30px rgba(0,184,173,0.3);}
+.featured .pkg-btn{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;border-color:transparent;box-shadow:0 0 30px rgba(0,184,173,0.3);}
+.featured .pkg-btn:hover{box-shadow:0 0 50px rgba(0,184,173,0.5);transform:translateY(-2px);}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--dark);}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px;}
+.test-glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);border-radius:22px;padding:30px 26px;position:relative;overflow:hidden;transition:all .35s;}
+.test-glass::before{content:'"';position:absolute;top:-20px;right:20px;font-family:'Cormorant Garamond',serif;font-size:140px;color:rgba(0,184,173,0.06);line-height:1;pointer-events:none;}
+.test-glass:hover{transform:translateY(-6px);border-color:rgba(0,184,173,0.2);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+.test-stars{color:var(--gold);font-size:15px;margin-bottom:16px;letter-spacing:2px;}
+.test-quote{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:22px;}
+.test-author{display:flex;align-items:center;gap:12px;}
+.test-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--sage));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;flex-shrink:0;box-shadow:0 0 20px rgba(0,184,173,0.25);}
+.test-name{font-weight:600;font-size:14px;color:#fff;}
+.test-detail{font-size:12px;color:rgba(255,255,255,0.35);}
+
+/* CONTACT */
+#contact{background:var(--dark2);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,184,173,0.08),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.contact-inner{text-align:center;max-width:700px;margin:0 auto;}
+.contact-desc{font-size:16px;color:rgba(255,255,255,0.5);margin:18px 0 44px;line-height:1.9;}
+.contact-cards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;}
+.contact-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);border-radius:22px;padding:24px 30px;text-decoration:none;color:#fff;text-align:center;min-width:180px;transition:all .35s;position:relative;overflow:hidden;}
+.contact-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,173,0.1),transparent);opacity:0;transition:opacity .3s;}
+.contact-card:hover{border-color:rgba(0,184,173,0.3);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.3),0 0 30px rgba(0,184,173,0.1);}
+.contact-card:hover::before{opacity:1;}
+.cc-icon{font-size:32px;margin-bottom:10px;}
+.cc-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.cc-val{font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);}
+.brief-glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);border-radius:22px;padding:28px;text-align:left;max-width:440px;margin:0 auto;}
+.brief-glass h4{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;margin-bottom:18px;color:rgba(255,255,255,0.85);}
+.brief-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;}
+.brief-row:last-child{border-bottom:none;}
+.brief-row span:first-child{color:rgba(255,255,255,0.35);}
+.brief-row span:last-child{color:rgba(255,255,255,0.7);font-size:13px;}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,0.06);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.foot-left{font-size:13px;color:rgba(255,255,255,0.3);}
+.foot-right{display:flex;gap:20px;}
+footer a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s;}
+footer a:hover{color:var(--teal-light);}
+
+/* FABs */
+.fab-group{position:fixed;right:22px;bottom:22px;display:flex;flex-direction:column;gap:10px;z-index:90;}
+.fab{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;font-weight:700;font-size:12px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);transition:all .3s;box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.fab:hover{transform:translateY(-4px) scale(1.08);}
+.fab-ig{background:linear-gradient(45deg,rgba(247,119,55,0.7),rgba(221,42,123,0.7),rgba(88,81,219,0.7));}
+.fab-wa{background:rgba(37,211,102,0.3);border-color:rgba(37,211,102,0.4);}
+.fab-li{background:rgba(10,102,194,0.3);border-color:rgba(10,102,194,0.4);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.25,.46,.45,.94);}
+.reveal.revealed{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:all .8s cubic-bezier(.25,.46,.45,.94);}
+.reveal-left.revealed{opacity:1;transform:none;}
+.reveal-right{opacity:0;transform:translateX(30px);transition:all .8s cubic-bezier(.25,.46,.45,.94);}
+.reveal-right.revealed{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{display:none;}
+  header{padding:0 20px;}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;}
+  .hero-right{display:none;}
+  .hero-chips,.hero-btns{justify-content:center;}
+  .hero-desc{margin:0 auto 28px;}
+  .container{padding:0 20px;}
+  .about-grid,.wa-layout{grid-template-columns:1fr;}
+  .invite-grid{grid-template-columns:1fr 1fr;}
+  .poster-grid{grid-template-columns:1fr 1fr;}
+  .pkg-grid{grid-template-columns:1fr;}
+  .test-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-row">
-    <div class="brand">
-      <img src="logo.jpeg" alt="Blueleaf Digital logo" class="logo">
-      <div class="brand-text">
-        <div class="brand-name">Blueleaf Digital</div>
-        <div class="brand-sub">Shreeja Hebbar</div>
-      </div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="bg-canvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="logo-wrap">
+    <img src="logo.jpeg" alt="BlueLeaf Digitals">
+    <div class="logo-text">
+      <strong>BlueLeaf Digitals</strong>
+      <span>Shreeja Hebbar</span>
     </div>
-
-    <!-- Mobile Nav Toggle -->
-    <button id="nav-toggle" aria-expanded="false" class="nav-toggle">
-      <span class="hamburger"></span>
-    </button>
-
-    <nav id="site-nav" class="site-nav">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#skills">Skills</a></li>
-
-        <!-- Instagram Portfolio -->
-        <li><a href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Instagram ↗</a></li>
-
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <div class="social-inline">
-        <a href="https://github.com/Shreeja-88" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank">LinkedIn</a>
-      </div>
-    </nav>
   </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#invitations">Invitations</a>
+    <a href="#whatsapp">WhatsApp</a>
+    <a href="#packages">Packages</a>
+    <a href="#testimonials">Reviews</a>
+    <a class="nav-cta" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Order ↗</a>
+  </nav>
 </header>
 
-<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>💍 Digital Wedding Specialists</div>
+    <div class="hero-script">Crafted with love</div>
+    <h1 class="hero-h1">Elegant Invitations<br>for <em>Your</em> Special Day</h1>
+    <p class="hero-desc">Beautiful digital wedding invitations, posters & WhatsApp-ready designs — crafted to make your celebration unforgettable.</p>
+    <div class="hero-chips">
+      <span class="chip-glass">💍 Wedding Invites</span>
+      <span class="chip-glass">📜 Digital PDFs</span>
+      <span class="chip-glass">📱 WhatsApp Ready</span>
+      <span class="chip-glass">🎉 Event Posters</span>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-glow" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">View Designs ↗</a>
+      <a class="btn-ghost" href="#packages">See Packages</a>
+    </div>
+  </div>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="gradient-anim"></div>
+  <div class="hero-right">
+    <div class="card-scene">
+      <div class="sparkle" style="width:4px;height:4px;top:5%;left:10%;animation-duration:2.2s;animation-delay:.3s"></div>
+      <div class="sparkle" style="width:3px;height:3px;top:15%;right:15%;animation-duration:1.8s;animation-delay:.8s"></div>
+      <div class="sparkle" style="width:5px;height:5px;bottom:20%;left:5%;animation-duration:2.5s;animation-delay:.1s"></div>
+      <div class="sparkle" style="width:3px;height:3px;bottom:10%;right:20%;animation-duration:2s;animation-delay:1.2s"></div>
+      <div class="glass-card card-main-invite">
+        <div class="inv-top-ornament">✦ ✦ ✦</div>
+        <div class="inv-script-big">Together Forever</div>
+        <div class="inv-couple">Priya & Arjun</div>
+        <div class="inv-divider"></div>
+        <div class="inv-date">February 14, 2026</div>
+        <div class="inv-venue">📍 Palace Grounds, Bengaluru</div>
+      </div>
+      <div class="mini-glass mg1"><div class="mg-label">Style</div><div class="mg-val">Royal</div></div>
+      <div class="mini-glass mg2"><div class="mg-label">Delivery</div><div class="mg-val">24 hrs</div></div>
+      <div class="mini-glass mg3"><div class="mg-label">Format</div><div class="mg-val">WhatsApp</div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <h1 class="reveal">Design. Code. Teach.</h1>
-
-        <p class="lead reveal">
-          I create digital designs, invitations, posters, PPTs, coding projects & academic guidance — and post all my work on Instagram.
-        </p>
-
-        <div class="hero-ctas reveal">
-          <a class="btn primary" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">View My Work ↗</a>
-          <a class="btn outline" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Order via DM</a>
-        </div>
-
-        <ul class="hero-highlights reveal">
-          <li><strong>625/625</strong> SSLC</li>
-          <li><strong>98.6%</strong> PUC</li>
-          <li>Experience in printing & production</li>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="s-label reveal">About BlueLeaf Digitals</div>
+    <h2 class="s-title reveal">Premium designs for<br><em>precious moments</em></h2>
+    <div class="about-grid">
+      <div class="about-text reveal-left">
+        <p>I'm <strong style="color:#fff">Shreeja Hebbar</strong> — a Computer Science student and founder of BlueLeaf Digitals. I specialize in crafting elegant digital wedding invitations and event designs that couples can instantly share on WhatsApp, Instagram, or as beautifully formatted PDFs.</p>
+        <p>With experience in both print production and digital design, I understand what makes an invitation feel truly special — and how to make it look stunning on every screen.</p>
+        <ul class="glass-list">
+          <li>Custom wedding invitations & event cards</li>
+          <li>WhatsApp-optimized, mobile-first designs</li>
+          <li>Fast delivery — most designs within 24 hours</li>
+          <li>Affordable pricing for beautiful results</li>
+          <li>Real print & digital production experience</li>
         </ul>
       </div>
-
-      <div class="hero-media reveal">
-        <img src="work1.jpeg" alt="Sample work" />
+      <div class="about-right reveal-right">
+        <div class="stat-glass d1"><div class="stat-icon">💍</div><div class="stat-num">100+</div><div class="stat-desc">Designs crafted for couples</div></div>
+        <div class="stat-glass d2"><div class="stat-icon">⚡</div><div class="stat-num">24h</div><div class="stat-desc">Average delivery time</div></div>
+        <div class="stat-glass d3"><div class="stat-icon">📱</div><div class="stat-num">6+</div><div class="stat-desc">Design styles available</div></div>
+        <div class="stat-glass d4"><div class="stat-icon">⭐</div><div class="stat-num">5★</div><div class="stat-desc">Rated by happy couples</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section bg-soft gradient-a">
-    <div class="container split">
-      <div class="reveal">
-        <h2>About me</h2>
-        <p>I’m <strong>Shreeja</strong> — a Computer Science student and founder of Blueleaf Digital. I blend coding + design + academic excellence + real printing shop experience.</p>
+<!-- INVITATIONS -->
+<section id="invitations" class="section">
+  <div class="container">
+    <div class="s-label reveal">Portfolio</div>
+    <h2 class="s-title reveal">Wedding Invitation<br><em>Design Styles</em></h2>
+    <div class="invite-grid">
 
-        <h3>Why trust me?</h3>
-        <ul class="checklist">
-          <li>Print + digital design experience</li>
-          <li>Clean code & mini-projects</li>
-          <li>Professional PPTs & Reports</li>
-          <li>Quick delivery</li>
-        </ul>
-      </div>
-
-      <div class="reveal">
-        <h3>What I specialize in</h3>
-        <p class="muted">Practical, aesthetic & production-ready outputs</p>
-
-        <div class="specialties">
-          <div class="chip">Coding Projects</div>
-          <div class="chip">Web Designs</div>
-          <div class="chip">Logos & Posters</div>
-          <div class="chip">Digital Wedding Cards</div>
-          <div class="chip">Reports & PPTs</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="section gradient-b">
-    <div class="container">
-      <h2 class="reveal">My Services</h2>
-
-      <div class="grid">
-        <article class="service reveal">
-          <h3>Coding Projects</h3>
-          <p>Mini projects, assignments, error fixing & documentation.</p>
-        </article>
-
-        <article class="service reveal">
-          <h3>Logo & Poster Design</h3>
-          <p>Modern aesthetic + print-ready output.</p>
-        </article>
-
-        <article class="service reveal">
-          <h3>PPT & Reports</h3>
-          <p>Professional slides, formatting & diagrams.</p>
-        </article>
-
-        <article class="service reveal">
-          <h3>Digital Invitation Cards</h3>
-          <p>Wedding, birthday, engagement, all events.</p>
-        </article>
-
-        <article class="service reveal">
-          <h3>10th & 12th Study Tips</h3>
-          <p>Guidance by Karnataka board topper.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section bg-soft">
-    <div class="container">
-      <h2 class="reveal">Skills</h2>
-
-      <div class="skill-grid">
-        <div class="skill reveal"><strong>Programming</strong><p>Python · C · Java</p></div>
-        <div class="skill reveal"><strong>Web</strong><p>HTML · CSS · JS</p></div>
-        <div class="skill reveal"><strong>Design</strong><p>Figma · Canva · Photoshop</p></div>
-        <div class="skill reveal"><strong>Documentation</strong><p>PPT · Reports</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="container contact-grid">
-
-      <div class="reveal">
-        <h2>Contact & Orders</h2>
-        <p class="muted">Fastest response: Instagram DM</p>
-
-        <ul class="contact-list">
-          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">@_.blueleaf_.digital_</a></li>
-          <li><strong>Order via DM:</strong> <a href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Send DM ↗</a></li>
-          <li><strong>Email:</strong> <a href="mailto:itshreeja@gmail.com">itshreeja@gmail.com</a></li>
-        </ul>
-
-        <div class="contact-cta">
-          <a class="btn primary" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Order on Instagram</a>
-          <a class="btn outline" href="mailto:itshreeja@gmail.com">Email me</a>
+      <div class="inv-card reveal d1">
+        <div class="inv-card-inner th-royal">
+          <div class="inv-glass-overlay"></div>
+          <span class="corner-dec cd-tl">❋</span><span class="corner-dec cd-br">❋</span>
+          <div class="inv-tag">Royal Classic</div>
+          <div style="font-size:18px;opacity:.5;margin-bottom:12px">~ With God's Blessings ~</div>
+          <div class="i-script" style="color:rgba(255,255,255,0.9)">Together</div>
+          <div class="i-names" style="color:rgba(255,255,255,0.8)">Ananya & Rohan</div>
+          <div class="i-line"></div>
+          <div class="i-date" style="color:rgba(255,255,255,0.6)">APRIL 20, 2026</div>
+          <div class="i-venue">The Grand Palace, Mysuru</div>
         </div>
       </div>
 
-      <div class="reveal">
-        <h3>Send this on Instagram</h3>
-        <pre class="brief">
-Project type:
-Deadline:
-References:
-Color/style:
-Contact:
-        </pre>
+      <div class="inv-card reveal d2">
+        <div class="inv-card-inner th-pastel">
+          <div class="inv-glass-overlay"></div>
+          <div class="inv-tag">Warm Elegance</div>
+          <div style="font-size:28px;margin-bottom:12px">✿ ✿ ✿</div>
+          <div class="i-script" style="color:#e8c97a">Wedding Day</div>
+          <div class="i-names" style="color:rgba(255,210,160,0.85)">Meera & Karthik</div>
+          <div class="i-line" style="background:rgba(201,168,76,0.4)"></div>
+          <div class="i-date" style="color:rgba(255,200,140,0.6)">MAY 15, 2026</div>
+          <div class="i-venue" style="color:rgba(255,180,100,0.4)">Botanical Gardens, Pune</div>
+        </div>
+      </div>
+
+      <div class="inv-card reveal d3">
+        <div class="inv-card-inner th-floral">
+          <div class="inv-glass-overlay"></div>
+          <div class="inv-tag">Floral Garden</div>
+          <div style="font-size:36px;margin-bottom:14px">🌸</div>
+          <div class="i-script" style="color:#7ec89a">Blossom & Love</div>
+          <div class="i-names" style="color:rgba(180,230,200,0.85)">Kavya & Siddharth</div>
+          <div class="i-line" style="background:rgba(126,200,154,0.4)"></div>
+          <div class="i-date" style="color:rgba(150,210,170,0.6)">JUNE 8, 2026</div>
+          <div class="i-venue" style="color:rgba(120,180,140,0.4)">Lalbagh Gardens, Bengaluru</div>
+        </div>
+      </div>
+
+      <div class="inv-card reveal d1">
+        <div class="inv-card-inner th-gold">
+          <div class="inv-glass-overlay"></div>
+          <span class="corner-dec cd-tl" style="color:#c9a84c;opacity:.2">◈</span>
+          <span class="corner-dec cd-br" style="color:#c9a84c;opacity:.2">◈</span>
+          <div class="inv-tag">Royal Gold</div>
+          <div style="color:#c9a84c;opacity:.7;margin-bottom:12px;font-size:18px">✦ ✦ ✦</div>
+          <div class="i-script" style="color:#e8c97a">Eternal Bond</div>
+          <div class="i-names" style="color:rgba(232,201,122,0.8)">Divya & Vikram</div>
+          <div class="i-line" style="background:rgba(201,168,76,0.35)"></div>
+          <div class="i-date" style="color:rgba(232,201,122,0.55)">JULY 12, 2026</div>
+          <div class="i-venue" style="color:rgba(201,168,76,0.35)">Leela Palace, Chennai</div>
+        </div>
+      </div>
+
+      <div class="inv-card reveal d2">
+        <div class="inv-card-inner th-modern">
+          <div class="inv-glass-overlay"></div>
+          <div class="inv-tag">Modern Couple</div>
+          <div style="font-size:40px;margin-bottom:14px">👫</div>
+          <div class="i-script" style="color:rgba(255,255,255,0.9);font-size:28px">Save The Date</div>
+          <div class="i-names" style="color:rgba(255,255,255,0.8);font-size:18px">Nisha & Aryan</div>
+          <div class="i-line" style="background:rgba(255,255,255,0.2)"></div>
+          <div class="i-date" style="color:rgba(255,255,255,0.5)">AUG 30, 2026</div>
+          <div class="i-venue">Taj Hotel, Mumbai</div>
+        </div>
+      </div>
+
+      <div class="inv-card reveal d3">
+        <div class="inv-card-inner th-sage">
+          <div class="inv-glass-overlay"></div>
+          <div class="inv-tag">Sage Garden</div>
+          <div style="font-size:20px;opacity:.5;margin-bottom:12px">🌿 Natural Love 🌿</div>
+          <div class="i-script" style="color:rgba(255,255,255,0.9)">New Beginning</div>
+          <div class="i-names" style="color:rgba(255,255,255,0.8)">Pooja & Rahul</div>
+          <div class="i-line"></div>
+          <div class="i-date" style="color:rgba(255,255,255,0.5)">SEP 22, 2026</div>
+          <div class="i-venue">Coorg Estate, Karnataka</div>
+        </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-row">
-    <div>© <span id="year"></span> Blueleaf Digital | Shreeja Hebbar</div>
-    <div>
-      <a href="https://github.com/Shreeja-88" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/shreejahebbar676" target="_blank" style="margin-left:12px;">LinkedIn</a>
+<!-- WHATSAPP -->
+<section id="whatsapp" class="section">
+  <div class="container">
+    <div class="s-label reveal">WhatsApp Invitations</div>
+    <h2 class="s-title reveal">Share instantly,<br><em>anywhere</em></h2>
+    <div class="wa-layout">
+      <div class="wa-feats">
+        <div class="wa-feat reveal d1"><div class="wa-icon">📱</div><div class="wa-feat-body"><h4>Mobile-Optimized Design</h4><p>Every invitation looks stunning on phone screens — exactly how your guests will see it.</p></div></div>
+        <div class="wa-feat reveal d2"><div class="wa-icon">⚡</div><div class="wa-feat-body"><h4>Instant Sharing</h4><p>Send to hundreds of guests in seconds via WhatsApp groups, DMs, or Instagram stories.</p></div></div>
+        <div class="wa-feat reveal d3"><div class="wa-icon">📄</div><div class="wa-feat-body"><h4>High-Quality PDF Format</h4><p>Also available as print-ready PDFs — perfect for those who want a physical keepsake.</p></div></div>
+        <div class="wa-feat reveal d4"><div class="wa-icon">✨</div><div class="wa-feat-body"><h4>Animated Options Available</h4><p>Make your invitation come alive with subtle animations that delight your guests.</p></div></div>
+      </div>
+      <div class="reveal-right">
+        <div class="phone-wrap">
+          <div class="phone-screen">
+            <div class="phone-bar">
+              <div class="phone-avatar"></div>
+              <div class="phone-info"><strong>Wedding Group 💍</strong><small>Priya, Arjun +247 more</small></div>
+            </div>
+            <div class="phone-body">
+              <div class="bubble-recv"><p>Our wedding invitation is finally ready! 🎉</p><div class="btime">10:22 AM</div></div>
+              <div class="bubble-invite-glass">
+                <div class="biscript">We're Getting Married!</div>
+                <div class="binames">Priya & Arjun</div>
+                <div style="width:30px;height:1px;background:rgba(255,255,255,0.2);margin:8px auto"></div>
+                <div class="bidate">FEB 14, 2026 • BENGALURU</div>
+                <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,0.4)">Tap to view full invitation ↗</div>
+                <div class="btime" style="color:rgba(255,255,255,0.3)">10:22 AM</div>
+              </div>
+              <div class="bubble-sent"><p>Congratulations! 🥂✨</p><div class="btime">10:23 AM ✓✓</div></div>
+              <div class="bubble-sent"><p>The design is SO beautiful 😍</p><div class="btime">10:24 AM ✓✓</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- POSTERS -->
+<section id="posters" class="section">
+  <div class="container">
+    <div class="s-label reveal">Event Posters</div>
+    <h2 class="s-title reveal">Every occasion deserves<br><em>beautiful design</em></h2>
+    <div class="poster-grid">
+      <div class="poster-card reveal d1"><div class="poster-inner p-std"><div class="poster-emoji">📅</div><div class="poster-label" style="color:#fff">Save The Date</div><div class="poster-sub" style="color:rgba(255,255,255,0.4)">Announcement</div></div></div>
+      <div class="poster-card reveal d2"><div class="poster-inner p-eng"><div class="poster-emoji">💍</div><div class="poster-label" style="color:#e8c97a">Engagement</div><div class="poster-sub" style="color:rgba(232,201,122,0.4)">Celebration</div></div></div>
+      <div class="poster-card reveal d3"><div class="poster-inner p-ann"><div class="poster-emoji">🎊</div><div class="poster-label" style="color:rgba(255,255,255,0.85)">Announcement</div><div class="poster-sub" style="color:rgba(255,255,255,0.3)">Wedding poster</div></div></div>
+      <div class="poster-card reveal d4"><div class="poster-inner p-cpl"><div class="poster-emoji">👫</div><div class="poster-label" style="color:rgba(255,255,255,0.85)">Couple Portrait</div><div class="poster-sub" style="color:rgba(255,255,255,0.3)">Photo design</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages" class="section">
+  <div class="container">
+    <div class="s-label reveal">Pricing</div>
+    <h2 class="s-title reveal">Simple packages,<br><em>beautiful results</em></h2>
+    <div class="pkg-grid">
+      <div class="pkg-glass reveal d1">
+        <div class="pkg-name">Basic</div>
+        <div class="pkg-price">₹299</div>
+        <div class="pkg-sub">per invitation</div>
+        <ul class="pkg-feats">
+          <li>1 Digital Wedding Invitation</li>
+          <li>WhatsApp-ready format</li>
+          <li>High-quality PDF</li>
+          <li>48-hour delivery</li>
+          <li>1 revision included</li>
+        </ul>
+        <a class="pkg-btn" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Get Started ↗</a>
+      </div>
+      <div class="pkg-glass featured reveal d2">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-name">Premium</div>
+        <div class="pkg-price">₹499</div>
+        <div class="pkg-sub">invitation + poster</div>
+        <ul class="pkg-feats">
+          <li>Custom Wedding Invitation</li>
+          <li>Matching Event Poster</li>
+          <li>WhatsApp + PDF formats</li>
+          <li>24-hour delivery</li>
+          <li>3 revisions included</li>
+          <li>Save the Date card</li>
+        </ul>
+        <a class="pkg-btn" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Order Now ↗</a>
+      </div>
+      <div class="pkg-glass reveal d3">
+        <div class="pkg-name">Luxury</div>
+        <div class="pkg-price">₹799</div>
+        <div class="pkg-sub">complete package</div>
+        <ul class="pkg-feats">
+          <li>Custom Wedding Invitation</li>
+          <li>Poster + Save the Date</li>
+          <li>Engagement announcement</li>
+          <li>All digital formats</li>
+          <li>Priority 12-hour delivery</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <a class="pkg-btn" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Order Luxury ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="s-label reveal">What Clients Say</div>
+    <h2 class="s-title reveal">Loved by<br><em>happy couples</em></h2>
+    <div class="test-grid">
+      <div class="test-glass reveal d1">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"The invitation design was absolutely stunning. All our guests kept asking who designed it. Fast delivery too!"</div>
+        <div class="test-author"><div class="test-av">P</div><div><div class="test-name">Priya Sharma</div><div class="test-detail">Wedding — Bengaluru, 2025</div></div></div>
+      </div>
+      <div class="test-glass reveal d2">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"Perfect for sharing on WhatsApp! Everyone loved the design. So easy to forward to family and friends."</div>
+        <div class="test-author"><div class="test-av">M</div><div><div class="test-name">Meena Krishnan</div><div class="test-detail">Engagement — Mysuru, 2025</div></div></div>
+      </div>
+      <div class="test-glass reveal d3">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"Very professional and creative. Got my wedding posters and invitation done in just one day. Highly recommend!"</div>
+        <div class="test-author"><div class="test-av">R</div><div><div class="test-name">Ravi Hegde</div><div class="test-detail">Wedding Package — Mangaluru, 2025</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="s-label reveal" style="justify-content:center">Get In Touch</div>
+      <h2 class="s-title reveal">Ready to create your<br><em>dream invitation?</em></h2>
+      <p class="contact-desc reveal">DM on Instagram for the fastest response. Share your wedding details and we'll create something beautiful together.</p>
+      <div class="contact-cards reveal">
+        <a class="contact-card" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">
+          <div class="cc-icon">📸</div><div class="cc-label">Instagram DM</div><div class="cc-val">@_.blueleaf_.digital_</div>
+        </a>
+        <a class="contact-card" href="mailto:itshreeja@gmail.com">
+          <div class="cc-icon">✉️</div><div class="cc-label">Email</div><div class="cc-val">itshreeja@gmail.com</div>
+        </a>
+      </div>
+      <div class="brief-glass reveal">
+        <h4>📋 Order Brief — Share on DM</h4>
+        <div class="brief-row"><span>Project type:</span><span>Wedding / Engagement / Event</span></div>
+        <div class="brief-row"><span>Names:</span><span>Bride & Groom names</span></div>
+        <div class="brief-row"><span>Date & Venue:</span><span>Your wedding details</span></div>
+        <div class="brief-row"><span>Color / Style:</span><span>Royal / Pastel / Floral / Gold</span></div>
+        <div class="brief-row"><span>Deadline:</span><span>When do you need it?</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-left">© <span id="yr"></span> BlueLeaf Digitals · Shreeja Hebbar · Made with ♥ in Karnataka</div>
+  <div class="foot-right">
+    <a href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">Instagram</a>
+    <a href="https://github.com/Shreeja-88" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
-<!-- Floating Social Buttons -->
+<!-- FABs -->
 <div class="fab-group">
-  <a class="fab ig" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">IG</a>
-  <a class="fab gh" href="https://github.com/Shreeja-88" target="_blank">GH</a>
-  <a class="fab li" href="https://www.linkedin.com/in/shreejahebbar676" target="_blank">IN</a>
+  <a class="fab fab-ig" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">IG</a>
+  <a class="fab fab-wa" href="https://www.instagram.com/_.blueleaf_.digital_/" target="_blank">💍</a>
+  <a class="fab fab-li" href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank">IN</a>
 </div>
 
 <script>
-// Year Update
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-// Mobile Nav
-const navToggle = document.getElementById('nav-toggle');
-const siteNav = document.getElementById('site-nav');
-navToggle.addEventListener('click', () => {
-  siteNav.classList.toggle('open');
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.left=mx-6+'px';
+  cursor.style.top=my-6+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx-18+'px'; ring.style.top=ry-18+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';ring.style.transform='scale(1.4)';ring.style.borderColor='rgba(0,184,173,0.6)';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.transform='scale(1)';ring.style.borderColor='rgba(0,184,173,0.4)';});
 });
 
-// AOS-like Reveal
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      obs.unobserve(entry.target);
-    }
-  });
-});
-reveals.forEach(r => obs.observe(r));
+// Particle canvas
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+class P{
+  constructor(){this.reset();}
+  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.5;this.a=Math.random()*.4+.1;this.c=Math.random()>.6?'rgba(0,184,173,':'rgba(142,181,176,';}
+  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.c+this.a+')';ctx.fill();}
+}
+const particles=[];
+for(let i=0;i<120;i++) particles.push(new P());
+(function loop(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{p.update();p.draw();});
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){ctx.beginPath();ctx.strokeStyle=`rgba(0,184,173,${(1-d/100)*.06})`;ctx.lineWidth=.5;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
+  }
+  requestAnimationFrame(loop);
+})();
+
+// Header scroll
+const hdr=document.getElementById('site-header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+
+// Reveal
+const revs=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');} });},{threshold:.1}).observe && revs.forEach(r=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');}});},{threshold:.1}).observe(r));
 </script>
-
 </body>
 </html>
